@@ -1,0 +1,1 @@
+print("Muy bien, tu me has mostrado tu pensamiento en",open('hola.txt').read().split().__len__(), "palabras")
