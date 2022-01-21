@@ -42,8 +42,9 @@ def searchShedule():
         if selector == 1:
             searchTlfno = int(input("Ingrese el teléfono a buscar: "))
             for name, tlfno in shedule.items():
-                if searchTlfno == tlfno:
-                    print(name)
+                if str(searchTlfno) in str(tlfno):
+                    a.setdefault(name, tlfno)
+            viewShedule(a)
         if selector == 2:
             searchName = str(input("Ingrese el nombre de la persona: "))
             upSearchName = string.capwords(searchName)
