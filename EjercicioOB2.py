@@ -18,8 +18,8 @@ Ampliación:
 
 '''
 
-
 # It's not the prettiest, but it's working
+# hahahah yes, now its more pretty...
 
 import string
 
@@ -39,7 +39,6 @@ def searchShedule():
               " 3 - VOLVER AL MENÚ")
 
         selector = int(input("Escribe el número para seleccionar: "))
-
         if selector == 1:
             searchTlfno = int(input("Ingrese el teléfono a buscar: "))
             for name, tlfno in shedule.items():
@@ -48,28 +47,29 @@ def searchShedule():
         if selector == 2:
             searchName = str(input("Ingrese el nombre de la persona: "))
             upSearchName = string.capwords(searchName)
-            a = []
             for name, tlfno in shedule.items():
                 if upSearchName in name:
-                    a.append(tlfno)
-        print(a)
+                    a.setdefault(name, tlfno)
+            viewShedule(a)
         if selector == 3:
             ini()
     except ValueError:
         print("Valor no válido! Por favor no introduzcas valores alfabéticos ni caracteres especiales.")
 
 
-def viewShedule():
+def viewShedule(param):
     print(f"\n \n################### SUPERAGENDA ####################")
-    for key, values in shedule.items():
+    for key, values in param.items():
         print(f"Nombre:  {key} \n"
-        f"Teléfono: {values} ")
+              f"Teléfono: {values} \n")
     print(f"#################################################### \n \n \n")
     ini()
+
 
 print("########## AGENDA DE TELÉFONOS ##########")
 
 shedule = {}
+a = {}
 
 
 def ini():
@@ -87,7 +87,7 @@ def ini():
         if selector == 2:
             searchShedule()
         if selector == 3:
-            viewShedule()
+            viewShedule(shedule)
         if selector == 4:
             exit("Adios! Gracias por usar la agenda.")
         else:
