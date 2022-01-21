@@ -28,7 +28,11 @@ def addShedule():
     addName = str(input("Introduce nombre y apellidos: "))
     addTlfno = int(input("Introduce teléfono: "))
     upAddName = string.capwords(addName)
-    shedule.setdefault(upAddName, addTlfno)
+    if upAddName in shedule:
+        print("¡Ya está ese contacto en la agenda!")
+    else:
+        shedule.setdefault(upAddName, addTlfno)
+        print("¡Contacto agregado!")
 
 
 def searchShedule():
@@ -60,9 +64,9 @@ def searchShedule():
 
 def viewShedule(param):
     print(f"\n \n################### SUPERAGENDA ####################")
-    for key, values in param.items():
-        print(f"Nombre:  {key} \n"
-              f"Teléfono: {values} \n")
+    for name, tlfno in param.items():
+        print(f"Nombre:  {name} \n"
+              f"Teléfono: {tlfno} \n")
     print(f"#################################################### \n \n \n")
     ini()
 
