@@ -20,7 +20,6 @@ Ampliación:
 
 
 # It's not the prettiest, but it's working
-# the extension is missing
 
 import string
 
@@ -49,9 +48,11 @@ def searchShedule():
         if selector == 2:
             searchName = str(input("Ingrese el nombre de la persona: "))
             upSearchName = string.capwords(searchName)
+            a = []
             for name, tlfno in shedule.items():
                 if upSearchName in name:
-                    print(tlfno)
+                    a.append(tlfno)
+        print(a)
         if selector == 3:
             ini()
     except ValueError:
