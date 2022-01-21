@@ -20,14 +20,16 @@ Ampliación:
 
 
 # It's not the prettiest, but it's working
-
 # the extension is missing
+
+import string
 
 
 def addShedule():
     addName = str(input("Introduce nombre y apellidos: "))
     addTlfno = int(input("Introduce teléfono: "))
-    shedule.setdefault(addName, addTlfno)
+    upAddName = string.capwords(addName)
+    shedule.setdefault(upAddName, addTlfno)
 
 
 def searchShedule():
@@ -46,8 +48,9 @@ def searchShedule():
                     print(name)
         if selector == 2:
             searchName = str(input("Ingrese el nombre de la persona: "))
+            upSearchName = string.capwords(searchName)
             for name, tlfno in shedule.items():
-                if searchName in name:
+                if upSearchName in name:
                     print(tlfno)
         if selector == 3:
             ini()
