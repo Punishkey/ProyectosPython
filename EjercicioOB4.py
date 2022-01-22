@@ -34,8 +34,6 @@ response = requests.get(petitionWeb)
 
 r = response.json()
 
-weather = {}
-
 '''code 404 not gut'''
 
 if r["cod"] != "404":
