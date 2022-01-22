@@ -47,15 +47,15 @@ def searchShedule():
             searchTlfno = int(input("Ingrese el teléfono a buscar: "))
             for name, tlfno in shedule.items():
                 if str(searchTlfno) in str(tlfno):
-                    a.setdefault(name, tlfno)
-            viewShedule(a)
+                    searchList.setdefault(name, tlfno)
+            viewShedule(searchList)
         if selector == 2:
             searchName = str(input("Ingrese el nombre de la persona: "))
             upSearchName = string.capwords(searchName)
             for name, tlfno in shedule.items():
                 if upSearchName in name:
-                    a.setdefault(name, tlfno)
-            viewShedule(a)
+                    searchList.setdefault(name, tlfno)
+            viewShedule(searchList)
         if selector == 3:
             ini()
     except ValueError:
@@ -87,7 +87,7 @@ def viewShedule(param):
 print("########## AGENDA DE TELÉFONOS ##########")
 
 shedule = {}
-a = {}
+searchList = {}
 
 
 def ini():
