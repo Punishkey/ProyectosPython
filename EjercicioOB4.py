@@ -16,11 +16,11 @@ Objetivo:
 
 import requests
 
-# r = requests.get('https://api.openweathermap.org/data/2.5/weather?q=Puente Genil&appid=6d815907cd99ea1fdecd5ae15b2fd14d')
+# r = requests.get('https://api.openweathermap.org/data/2.5/weather?q=Puente Genil&appid=PON AQUI LA API KEY')
 
 # r.status_code
 
-api_Key = '6d815907cd99ea1fdecd5ae15b2fd14d'
+api_Key = 'PON AQUI LA API KEY'
 
 cityUser = str(input("Escribe la ciudad que quieras saber el tiempo: "))
 
