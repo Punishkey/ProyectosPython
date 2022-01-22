@@ -71,7 +71,7 @@ def delShedule():
                 print("Usuario eliminado de la agenda.")
                 break
             else:
-                print("No existe esa persona en la agenda.")
+                raise KeyError
     except KeyError:
         print("¡Error! No existe esa persona en la agenda.")
 
