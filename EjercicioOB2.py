@@ -61,6 +61,16 @@ def searchShedule():
     except ValueError:
         print("Valor no válido! Por favor no introduzcas valores alfabéticos ni caracteres especiales.")
 
+def delShedule():
+    selectName = str(input("Escribe el nombre de la persona para eliminar: "))
+    upSearchName = string.capwords(selectName)
+    for name, tlfno in shedule.items():
+        if upSearchName in name:
+            shedule.pop(upSearchName)
+            print("Usuario eliminado de la agenda.")
+            break
+        else:
+            print("No existe esa persona en la agenda.")
 
 def viewShedule(param):
     print(f"\n \n################### SUPERAGENDA ####################")
@@ -83,7 +93,8 @@ def ini():
               " 1 - AÑADIR PERSONA Y TELÉFONO \n"
               " 2 - BUSCAR EL TELÉFONO INTRODUCIENDO EL NOMBRE DE LA PERSONA \n"
               " 3 - VER AGENDA \n"
-              " 4 - SALIR")
+              " 4 - ELIMINAR CONTACTOS EN AGENDA \n"
+              " 5 - SALIR")
 
         selector = int(input("Escribe el número para seleccionar: "))
 
@@ -94,6 +105,8 @@ def ini():
         if selector == 3:
             viewShedule(shedule)
         if selector == 4:
+            delShedule()
+        if selector == 5:
             exit("Adios! Gracias por usar la agenda.")
         else:
             ini()
