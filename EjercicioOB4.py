@@ -21,30 +21,49 @@ import requests
 # r.status_code
 
 api_Key = 'PON AQUI LA API KEY'
+web = 'https://api.openweathermap.org/data/2.5/weather?'
 
 cityUser = str(input("Escribe la ciudad que quieras saber el tiempo: "))
 
-web = 'https://api.openweathermap.org/data/2.5/weather?'
 
-# structure petition - web + "q=" + cityUser + "&appid=" + api_key
+# structure petition - web + "q=" + cityUser + "&appid=" + api_key. EXTENSION: If you need select temp. use
+# &units=imperial for Fahrenheit, &units=metric for Celsius, nothing if you use Kelvin.
 
-petitionWeb = web + "q=" + cityUser + "&appid=" + api_Key
+def getTemperature(cityUser, tempUser):
+    petitionWeb = web + "q=" + cityUser + tempUser + "&appid=" + api_Key
 
-response = requests.get(petitionWeb)
+    response = requests.get(petitionWeb)
 
-r = response.json()
+    r = response.json()
+    '''code 404 not gut'''
 
-'''code 404 not gut'''
+    if r["cod"] != "404":
+        city = r["name"]
+        temp_min = r["main"]["temp_min"]
+        temp_max = r["main"]["temp_max"]
 
-if r["cod"] != "404":
-    city = r["name"]
-    temp_min = r["main"]["temp_min"]
-    temp_max = r["main"]["temp_max"]
+        # FUCK. read more API. default in Kelvin not Farenheit
+        print(f"Ciudad Seleccionada:  {city} \n Temperatura mínima en grados = "
+              f"{(round(temp_min, 2))}{tempScale}\n Temperatura máxima en grados = "
+              f"{(round(temp_max, 2))}{tempScale}")
 
-    # FUCK. read more API. default in Kelvin not Farenheit
-    print(f"Ciudad Seleccionada:  {city} \n Temperatura mínima en grados = "
-          f"{(round(temp_min - 273.15, 2))}ºC\n Temperatura máxima en grados = "
-          f"{(round(temp_max - 273.15, 2))}ºC")
+
+try:
+    tempUser = int(input("Selecciona en que escala de temperatura deseas ver el tiempo: "))
+    if tempUser == 1:
+        tempUser = "&units=imperial"
+        tempScale = "ºF"
+        getTemperature(cityUser, tempUser)
+    elif tempUser == 2:
+        tempUser = "&units=metric"
+        tempScale = "ºC"
+        getTemperature(cityUser, tempUser)
+    elif tempUser == 3:
+        tempUser = ""
+        tempScale = "K"
+        getTemperature(cityUser, tempUser)
+except ValueError:
+    print("Error en la selección, por favor vuelva a intentarlo")
 
 # print(r)
 
