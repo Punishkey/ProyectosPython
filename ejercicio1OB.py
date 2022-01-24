@@ -19,18 +19,16 @@ El algoritmo del ejercicio es el siguiente:
 import os
 
 # create variable for directory
-directory = os.scandir('C:/Users/Punishkey/Downloads')
-
-
+directory = os.scandir('C:/Users/Punishkey/pruebas')
 
 # We get all the list of files in the folder, i use scandir, python recommended.
 # os.scandir(directory)
 
 # we go through the directory file by file and print what we get with its name
 for i in directory:
-    #print(i.name)     # Holy shit! a lot of files
+    # print(i.name)     # Holy shit! a lot of files
 
-# use a file variable for store files, non directory`s
+    # use a file variable for store files, non directory`s
 
     file = []
 
@@ -38,13 +36,13 @@ for i in directory:
         file.append(i)
         print(file)
 
-
 # mmm recursive?
 # os.walk(directory)
 
 # testing if with walk it is recursive, I need another variable
 
-directory2 = os.walk('C:/Users/Punishkey/Downloads')
+directory2 = os.walk('C:/Users/Punishkey/pruebas')
+stat = os.stat('C:/Users/Punishkey/pruebas')
 
 for i in directory2:
-    print(i)
+    print(i, "\n", stat.st_size, "bytes")
