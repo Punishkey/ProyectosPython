@@ -41,11 +41,10 @@ if r["cod"] != "404":
     temp_min = r["main"]["temp_min"]
     temp_max = r["main"]["temp_max"]
 
-    print("Ciudad Seleccionada: " + city +
-          "\n Temperatura mínima en grados = " +
-          str((temp_min - 32) / 18) +
-          "\n Temperatura máxima en grados = " +
-          str((temp_max - 32) / 18))
+    # FUCK. read more API. default in Kelvin not Farenheit
+    print(f"Ciudad Seleccionada:  {city} \n Temperatura mínima en grados = "
+          f"{(round(temp_min - 273.15, 2))}ºC\n Temperatura máxima en grados = "
+          f"{(round(temp_max - 273.15, 2))}ºC")
 
 # print(r)
 
