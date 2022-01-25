@@ -23,8 +23,8 @@ path = 'C:/Users/Punishkey/pruebas'
 # create variable for directory
 directory = os.scandir(path)
 
-byte = 1048576
-
+kilobyte = 1024
+size = 0
 # We get all the list of files in the folder, i use scandir, python recommended.
 # os.scandir(directory)
 
@@ -39,7 +39,7 @@ for i in directory:
     if i.is_file():
         stat = os.path.getsize(i)
         file.append(i)
-        print(file, round(stat / byte, 2), "Mb")
+        print(file, round(stat / kilobyte, 2), "kb")
 
 directory.close()
 # mmm recursive?
@@ -47,12 +47,12 @@ directory.close()
 
 # testing if with walk it is recursive, I need another variable
 # change everything. reed more about os and see examples.
-size = 0
+
 
 for root, dire, files in os.walk(path):
     for name in files:
         size = getsize(join(root, name))
         print(f"Ruta: {root} \n "
-              f"Archivo: {files} {size} bytes ")
+              f"Archivo: {files} - Peso: {round(size / kilobyte, 2)} kb")
 
 
