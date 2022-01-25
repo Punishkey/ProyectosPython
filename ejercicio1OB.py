@@ -17,32 +17,42 @@ El algoritmo del ejercicio es el siguiente:
 '''
 
 import os
+from os.path import getsize, join
 
+path = 'C:/Users/Punishkey/pruebas'
 # create variable for directory
-directory = os.scandir('C:/Users/Punishkey/pruebas')
+directory = os.scandir(path)
+
+byte = 1048576
 
 # We get all the list of files in the folder, i use scandir, python recommended.
 # os.scandir(directory)
 
 # we go through the directory file by file and print what we get with its name
+
 for i in directory:
     # print(i.name)     # Holy shit! a lot of files
-
     # use a file variable for store files, non directory`s
 
     file = []
 
     if i.is_file():
+        stat = os.path.getsize(i)
         file.append(i)
-        print(file)
+        print(file, round(stat / byte, 2), "Mb")
 
+directory.close()
 # mmm recursive?
 # os.walk(directory)
 
 # testing if with walk it is recursive, I need another variable
+# change everything. reed more about os and see examples.
+size = 0
 
-directory2 = os.walk('C:/Users/Punishkey/pruebas')
-stat = os.stat('C:/Users/Punishkey/pruebas')
+for root, dire, files in os.walk(path):
+    for name in files:
+        size = getsize(join(root, name))
+        print(f"Ruta: {root} \n "
+              f"Archivo: {files} {size} bytes ")
 
-for i in directory2:
-    print(i, "\n", stat.st_size, "bytes")
+
